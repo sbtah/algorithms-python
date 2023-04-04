@@ -1,0 +1,9 @@
+Linked Lists:
+- no indexes,
+- items are all spread in memory,
+- there is a variable 'head' that points to 1st item in list,
+- there is also a variable 'tail' that points to last item,
+- each item points to next item,
+
+BigO of LL:
+
