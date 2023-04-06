@@ -1,8 +1,3 @@
-"""
-Linked lists.
-"""
-
-
 class Node:
     def __init__(self, value):
         self.value = value
@@ -11,64 +6,68 @@ class Node:
 
 class LinkedList:
     def __init__(self, value):
-        node = Node(value)
-        self.head = node
-        self.tail = node
+        new_node = Node(value)
+        self.head = new_node
+        self.tail = new_node
         self.length = 1
 
+    def print_list(self):
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            temp = temp.next
+
     def append(self, value):
-        # create new node
-        # last item in the list points to new node
-        # tail points to new node
-        # Edge case of 0 items in list
-        # then head and tail points to new node
         new_node = Node(value)
-        if self.head is None:
+        if self.length == 0:
             self.head = new_node
             self.tail = new_node
         else:
             self.tail.next = new_node
             self.tail = new_node
         self.length += 1
-
         return True
 
     def pop(self):
+        # If no elements in the list...
         if self.length == 0:
             return None
+
+        # We set to variables for that will track
+        # current element and next
         temp = self.head
         pre = self.head
         while temp.next is not None:
             pre = temp
             temp = temp.next
+
+        # We detach last element.
         self.tail = pre
         self.tail.next = None
         self.length -= 1
         if self.length == 0:
             self.head = None
             self.tail = None
+
         return temp
 
-    def prepend(self, value):
-        pass
 
-    def insert(self, index, value):
-        pass
+my_linked_list = LinkedList(1)
+my_linked_list.append(2)
 
-    def print_list(self):
-        """Prints contents of entire list."""
-        temp = self.head
-        while temp is not None:
-            print(temp.value)
-            temp = temp.next
+# (2) Items - Returns 2 Node
+print(my_linked_list.pop().value)
+# (1) Item -  Returns 1 Node
+print(my_linked_list.pop().value)
+# (0) Items - Returns None
+print(my_linked_list.pop())
 
 
-my_list = LinkedList(1)
+"""
+    EXPECTED OUTPUT:
+    ----------------
+    2
+    1
+    None
 
-my_list.append(4)
-my_list.append(22)
-my_list.append(122)
-my_list.append(1122)
-my_list.print_list()
-my_list.pop()
-my_list.print_list()
+"""
