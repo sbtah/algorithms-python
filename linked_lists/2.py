@@ -50,7 +50,32 @@ class LinkedList:
         return temp
 
     def prepend(self, value):
-        pass
+        node = Node(value)
+        if self.length == 0:
+            self.head = node
+            self.tail = node
+        else:
+            node.next = self.head
+            self.head = node
+        self.length += 1
+        return True
+
+    def pop_first(self):
+
+        # Edge cases : 1 item in the list, 0 items in the list
+        if self.length == 0:
+            return None
+
+        node = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = node.next
+            node.next = None
+
+        self.length -= 1
+        return node
 
     def insert(self, index, value):
         pass
@@ -63,12 +88,10 @@ class LinkedList:
             temp = temp.next
 
 
-my_list = LinkedList(1)
+my_list = LinkedList(2)
+my_list.append(3)
+# my_list.print_list()
+print(my_list.pop_first().next)
 
-my_list.append(4)
-my_list.append(22)
-my_list.append(122)
-my_list.append(1122)
 my_list.print_list()
-my_list.pop()
-my_list.print_list()
+print(my_list.head.value)
