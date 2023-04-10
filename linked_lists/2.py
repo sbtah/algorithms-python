@@ -61,7 +61,6 @@ class LinkedList:
         return True
 
     def pop_first(self):
-
         # Edge cases : 1 item in the list, 0 items in the list
         if self.length == 0:
             return None
@@ -85,8 +84,39 @@ class LinkedList:
             temp = temp.next
         return temp
 
+    def set_value(self, index, value):
+        value_to_change = self.get(index)
+        if value_to_change is not None:
+            value_to_change.value = value
+            return True
+        return False
+
     def insert(self, index, value):
-        pass
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        new_node = Node(value)
+        temp = self.get(index - 1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
+
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length - 1:
+            return self.pop()
+        pre = self.get(index - 1)
+        current = pre.next
+        pre.next = current.next
+        current.next = None
+        return current
 
     def print_list(self):
         """Prints contents of entire list."""
@@ -97,7 +127,7 @@ class LinkedList:
 
 
 my_list = LinkedList(0)
-my_list.append(1)
 my_list.append(2)
-my_list.append(3)
-print(my_list.get(3).value)
+my_list.print_list()
+my_list.insert(1, 1)
+my_list.print_list()
