@@ -77,6 +77,14 @@ class LinkedList:
         self.length -= 1
         return node
 
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+
     def insert(self, index, value):
         pass
 
@@ -88,10 +96,8 @@ class LinkedList:
             temp = temp.next
 
 
-my_list = LinkedList(2)
+my_list = LinkedList(0)
+my_list.append(1)
+my_list.append(2)
 my_list.append(3)
-# my_list.print_list()
-print(my_list.pop_first().next)
-
-my_list.print_list()
-print(my_list.head.value)
+print(my_list.get(3).value)
