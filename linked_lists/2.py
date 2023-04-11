@@ -64,7 +64,6 @@ class LinkedList:
         # Edge cases : 1 item in the list, 0 items in the list
         if self.length == 0:
             return None
-
         node = self.head
         if self.length == 1:
             self.head = None
@@ -72,7 +71,6 @@ class LinkedList:
         else:
             self.head = node.next
             node.next = None
-
         self.length -= 1
         return node
 
@@ -118,6 +116,20 @@ class LinkedList:
         current.next = None
         return current
 
+    def reverse(self):
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+        # self.head, self.tail = self.tail, self.head
+
+        after = temp.next
+        before = None
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
+
     def print_list(self):
         """Prints contents of entire list."""
         temp = self.head
@@ -126,8 +138,10 @@ class LinkedList:
             temp = temp.next
 
 
-my_list = LinkedList(0)
+my_list = LinkedList(1)
 my_list.append(2)
+my_list.append(3)
+my_list.append(4)
 my_list.print_list()
-my_list.insert(1, 1)
+my_list.reverse()
 my_list.print_list()
