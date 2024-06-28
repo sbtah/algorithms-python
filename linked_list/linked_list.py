@@ -21,7 +21,7 @@ class Node:
 
 class LinkedList:
     """Implementation of a LinkedList data structure."""
-    
+
     # Setting default to None allows of creation of empty list.
     def __init__(self, value = None):
         """
@@ -34,7 +34,7 @@ class LinkedList:
         # Starting a tail pointer:
         self.tail = new_node
         # We also want to track the lenght of the list:
-        self.lenght = 1
+        self.lenght = 1 if value is not None else 0
 
     def __str__(self):
         return self.print_list()
@@ -45,8 +45,18 @@ class LinkedList:
         - Create new node,
         - Add node to the end.
         """
-        ...
-    
+        new_node = Node(value)
+        self.lenght += 1
+
+        if self.head is None and self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+        return True
+
     def prepend(self, value):
         ...
         """
@@ -64,7 +74,7 @@ class LinkedList:
         ...
 
     def print_list(self):
-        representation = f'['
+        representation = '['
         current_node = self.head
         while current_node is not None:
             representation += f'{current_node.value}, '
@@ -81,4 +91,6 @@ class LinkedList:
 # LL init:
 my_list = LinkedList()
 print(my_list)
-
+my_list.append(2)
+print(my_list.head)
+print(type(my_list.head))
