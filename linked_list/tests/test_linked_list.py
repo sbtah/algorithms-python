@@ -42,3 +42,34 @@ class TestsLinkedList:
         assert empty_list.head.value == 4
         assert empty_list.head.value == 4
 
+    def test_linked_list_pop_method_returns_none_for_empty_list(self):
+        """Test that pop method is returning None when list is empty."""
+        empty_list = LinkedList()
+        pop_return = empty_list.pop()
+        assert pop_return is None
+        assert empty_list.lenght == 0
+
+    def test_linked_list_pop_method_is_working_properly_for_one_value_in_list(self):
+        """Test that pop method works as expected when there is only one value in list."""
+        some_list = LinkedList(4)
+        assert some_list.lenght == 1
+        pop_return = some_list.pop()
+        assert some_list.lenght == 0
+        assert pop_return.value == 4
+        assert isinstance(pop_return, Node)
+        assert str(some_list) == '[]'
+
+    def test_linked_list_pop_method_is_working_properly_with_many_values_in_list(self):
+        """Test that pop method works as expected when where are many values in the list."""
+        some_list = LinkedList(4)
+        some_list.append(4)
+        some_list.append(1)
+        some_list.append(7)
+        some_list.append(2)
+        assert some_list.lenght == 5
+        assert str(some_list) == '[4, 4, 1, 7, 2, ]'
+        pop_return = some_list.pop()
+        assert some_list.lenght == 4
+        assert pop_return.value == 2
+        assert str(some_list) == '[4, 4, 1, 7, ]'
+        assert some_list.tail.value == 7

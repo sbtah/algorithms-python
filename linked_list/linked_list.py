@@ -57,6 +57,32 @@ class LinkedList:
             self.tail = new_node
         return True
 
+    def pop(self):
+        """
+        Responsibilities:
+        - Remove node from the right side.
+        """
+        if self.lenght == 0:
+            return None
+        if self.lenght == 1:
+            node = self.head
+            self.tail = None
+            self.head = None
+            self.lenght -= 1
+            return node
+        
+        current_node = self.head
+        while True: 
+            if current_node.next.next is None:
+                node_to_pop = current_node.next
+                self.tail = current_node
+                self.tail.next = None
+                self.lenght -= 1
+                return node_to_pop
+            else:
+                current_node = current_node.next
+                continue
+
     def prepend(self, value):
         ...
         """
@@ -90,7 +116,11 @@ class LinkedList:
 # Tests:
 # LL init:
 my_list = LinkedList()
-print(my_list)
 my_list.append(2)
-print(my_list.head)
-print(type(my_list.head))
+my_list.append(3)
+my_list.append(5)
+
+print(my_list)
+
+print(my_list.pop())
+print(my_list)

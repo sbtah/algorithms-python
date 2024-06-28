@@ -7,6 +7,11 @@ than tail var has to point to it also.
 It doesn't matter how many items we have in linked list.
 Appending always takes same number of operations.
 
+## Pop: O(n)
+2 edge cases : Empty list and only 1 item in the list. I both of these BigO is O(1).
+
+
+
 
 ## Removing: O(n)
 We have to start from head to get to the pointer that points to value pointing to None.
