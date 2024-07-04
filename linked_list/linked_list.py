@@ -62,6 +62,7 @@ class LinkedList:
         Responsibilities:
         - Remove node from the right side.
         """
+        # My attempt:
         if self.lenght == 0:
             return None
         if self.lenght == 1:
