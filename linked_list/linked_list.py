@@ -9,9 +9,9 @@ class Node:
 
     def __init__(self, value: Any):
         self.value = value
-        # Pointer to next value in a list.  
+        # Pointer to next value in a list.
         self.next = None
-    
+
     def __repr__(self):
         return str(self.value)
 
@@ -71,9 +71,9 @@ class LinkedList:
             self.head = None
             self.lenght -= 1
             return node
-        
+
         current_node = self.head
-        while True: 
+        while True:
             if current_node.next.next is None:
                 node_to_pop = current_node.next
                 self.tail = current_node
@@ -103,6 +103,30 @@ class LinkedList:
         self.lenght += 1
         return True
 
+    def pop_first(self) -> Node | None:
+        """
+        Responsibilities:
+        - Remove first item from left.
+        """
+        if self.lenght == 0:
+            return None
+
+        if self.lenght == 1:
+            node = self.head
+            self.tail = None
+            self.head = None
+            self.lenght -= 1
+            return node
+
+        node = self.head
+        self.head = node.next
+        node.next = None
+        self.lenght -= 1
+        return node
+
+
+
+
     def insert(self, index, value):
         """
         Responsibilities:
@@ -127,10 +151,5 @@ class LinkedList:
 
 # Tests:
 # LL init:
-my_list = LinkedList(4)
+my_list = LinkedList()
 print(my_list.head)
-print(my_list.tail)
-my_list.prepend(2)
-print(f'HEAD: {my_list.head}')
-print(f'HEAD next: {my_list.head.next}')
-print(my_list.tail)

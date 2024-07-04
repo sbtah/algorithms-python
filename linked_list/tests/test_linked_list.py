@@ -36,7 +36,7 @@ class TestsLinkedList:
         """Test that LinkedList with value passed to constructor can be created."""
         l_list = populated_list
         assert isinstance(l_list, LinkedList)
-        assert l_list.head.value == 4 
+        assert l_list.head.value == 4
         assert l_list.tail.value == 4
         assert l_list.lenght == 1
         assert str(l_list) == '[4, ]'
@@ -104,5 +104,33 @@ class TestsLinkedList:
         assert populated_list.head.next.value == 4
         assert populated_list.tail.next is None
 
+    def test_linked_list_pop_first_method_is_returning_none_for_empty_list(self, empty_list):
+        """Test that pop_first method is returning None with empty list."""
+        assert empty_list.lenght == 0
+        return_value = empty_list.pop_first()
+        assert return_value is None
+    
+    def test_linked_list_pop_first_method_is_working_as_expected_with_list_with_one_item(self, populated_list):
+        """Test that pop_first method is properly returning node when only one Node in list."""
+        assert populated_list.lenght == 1
+        return_value = populated_list.pop_first()
+        assert isinstance(return_value, Node)
+        assert populated_list.lenght == 0
+        assert populated_list.head is None
+        assert populated_list.tail is None
+
+    def test_linked_list_pop_first_method_is_working_as_expected_with_list_with_many_items(self, populated_list):
+        """Test that pop_first method is working properly when many Nodes in list."""
+        assert populated_list.head.value == 4
+        populated_list.append(1)
+        populated_list.append(2)
+        populated_list.append(3)
+        populated_list.append(4)
+        assert populated_list.lenght == 5
+        return_value = populated_list.pop_first()
+        assert isinstance(return_value, Node)
+        assert return_value.next is None
+        assert populated_list.lenght == 4
+        assert populated_list.head.value == 1
 
 
