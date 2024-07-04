@@ -152,3 +152,40 @@ class TestsLinkedList:
         return_value = populated_list.get(5)
         assert return_value.value == 5
         assert isinstance(return_value, Node)
+
+    def test_linked_list_set_value_is_working_as_expected(self, populated_list):
+        """Test that set_value method is properly setting new value on Node."""
+        return_value = populated_list.set_value(0, 11)
+        assert return_value is True
+        assert populated_list.head.value == 11
+
+    def test_linked_list_insert_method_is_returning_false_for_wrong_index(self, empty_list):
+        """Test that insert method is properly returning False for wrong indexes."""
+        return_value = empty_list.insert(-2, 1)
+        assert return_value is False
+        return_value = empty_list.insert(9, 1)
+        assert return_value is False
+    
+    def test_linked_list_insert_method_is_returning_true_when_inserting_to_empty_list(self, empty_list):
+        """Test that insert method is properly returning True with empty list."""
+        return_value = empty_list.insert(0, 12)
+        assert return_value is True
+        assert empty_list.head.value == 12
+
+    def test_linked_list_insert_method_is_returning_true_when_inserting_as_last(self, populated_list):
+        """Test that insert method is properly inserting value when inserting as last element to list."""
+        return_value = populated_list.insert(1, 12)
+        assert return_value is True
+        assert populated_list.lenght == 2
+        assert populated_list.tail.value == 12
+    
+    def test_linked_list_insert_method_is_returning_true_when_inserting_in_middle(self, populated_list):
+        """Test that insert method is properly inserting value when inserting as last element to list."""
+        populated_list.append(1)
+        populated_list.append(2)
+        populated_list.append(3)
+        return_value = populated_list.insert(2, 12)
+        assert return_value is True
+        assert populated_list.lenght == 5
+        node = populated_list.get(2)
+        assert node.value == 12

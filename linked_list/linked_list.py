@@ -145,6 +145,16 @@ class LinkedList:
                 current_node = current_node.next
                 continue
 
+    def set_value(self, index, value):
+        """
+        Responsibilities:
+        - set new value at specified index
+        """
+        node = self.get(index)
+        if node is not None:
+            node.value = value
+            return True
+        return False
 
     def insert(self, index, value):
         """
@@ -152,8 +162,20 @@ class LinkedList:
         - Create new node,
         - Insert node at specified index.
         """
-        ...
-
+        if index < 0 or index > self.lenght:
+            return False
+        if self.lenght == 0:
+            return self.prepend(value)
+        if index == self.lenght:
+            return self.append(value)
+        
+        new_node = Node(value)
+        before_node = self.get(index - 1)
+        new_node.next = before_node.next
+        before_node.next = new_node
+        self.lenght += 1
+        return True
+        
     def print_list(self):
         representation = '['
         current_node = self.head
