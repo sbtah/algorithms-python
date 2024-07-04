@@ -92,6 +92,17 @@ class LinkedList:
         - Add node to the beginning.
         """
 
+        new_node = Node(value)
+        if self.lenght == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+
+        self.lenght += 1
+        return True
+
     def insert(self, index, value):
         """
         Responsibilities:
@@ -116,12 +127,10 @@ class LinkedList:
 
 # Tests:
 # LL init:
-my_list = LinkedList()
-my_list.append(2)
-my_list.append(3)
-my_list.append(5)
-
-print(my_list)
-
-print(my_list.pop())
-print(my_list)
+my_list = LinkedList(4)
+print(my_list.head)
+print(my_list.tail)
+my_list.prepend(2)
+print(f'HEAD: {my_list.head}')
+print(f'HEAD next: {my_list.head.next}')
+print(my_list.tail)
