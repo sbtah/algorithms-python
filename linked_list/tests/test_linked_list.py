@@ -133,4 +133,22 @@ class TestsLinkedList:
         assert populated_list.lenght == 4
         assert populated_list.head.value == 1
 
+    def test_linked_list_get_method_is_returning_none_for_wrong_index(self, empty_list):
+        """Test that get method is properly returning None for wrong indexes."""
+        return_value = empty_list.get(0)
+        assert return_value is None
+        return_value = empty_list.get(-2)
+        assert return_value is None
 
+    def test_linked_list_get_method_is_working_as_expected(self, populated_list):
+        """Test that get method is returning expected Node."""
+        populated_list.append(1)
+        populated_list.append(2)
+        populated_list.append(3)
+        populated_list.append(4)
+        populated_list.append(5)
+        return_value = populated_list.get(0)
+        assert return_value.value == 4
+        return_value = populated_list.get(5)
+        assert return_value.value == 5
+        assert isinstance(return_value, Node)

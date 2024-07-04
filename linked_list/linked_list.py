@@ -124,7 +124,26 @@ class LinkedList:
         self.lenght -= 1
         return node
 
+    def get(self, index):
+        """
+        Responsibilities:
+        - Return node at provided index:
+        """
+        if index > self.lenght - 1:
+            return None
 
+        if index < 0:
+            return None
+
+        current_idx = 0
+        current_node = self.head
+        while True:
+            if index == current_idx:
+                return current_node
+            else:
+                current_idx += 1
+                current_node = current_node.next
+                continue
 
 
     def insert(self, index, value):
