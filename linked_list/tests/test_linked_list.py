@@ -205,3 +205,18 @@ class TestsLinkedList:
         assert return_value.value == 6
         assert return_value.next is None
 
+    def test_linked_list_reverse_method_is_properly_reversing_list(self, populated_list):
+        """Test that populated linked list can be properly reverted in place."""
+        list_object = populated_list
+        list_object.append(5)
+        list_object.append(6)
+        list_object.append(7)
+        list_object.append(8)
+        assert list_object.lenght == 5
+        return_value = list_object.reverse()
+        assert return_value is True
+        assert list_object.lenght == 5
+        assert list_object.head.value == 8
+        assert list_object.tail.value == 4
+        assert list_object.tail.next is None
+        assert str(list_object) == '[8, 7, 6, 5, 4]'

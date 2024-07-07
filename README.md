@@ -3,7 +3,7 @@ Here I'm trying to implement few data structures or sorting algorithms in Python
 Each implementation is tested with pytest.
 
 ## Currently implemented:
-- Linked List,
+- Linked List (Tested is working),
 
 
 ## Big O Notes.
