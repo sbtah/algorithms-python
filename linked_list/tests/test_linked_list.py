@@ -39,14 +39,14 @@ class TestsLinkedList:
         assert l_list.head.value == 4
         assert l_list.tail.value == 4
         assert l_list.lenght == 1
-        assert str(l_list) == '[4, ]'
+        assert str(l_list) == '[4]'
 
     def test_linked_list_append_method(self, empty_list):
         """Test that value can be successfully appended to Linked List."""
         assert str(empty_list) == '[]'
         assert empty_list.lenght == 0
         empty_list.append(4)
-        assert str(empty_list) == '[4, ]'
+        assert str(empty_list) == '[4]'
         assert empty_list.lenght == 1
         assert empty_list.head.value == 4
         assert empty_list.head.value == 4
@@ -75,11 +75,11 @@ class TestsLinkedList:
         some_list.append(7)
         some_list.append(2)
         assert some_list.lenght == 5
-        assert str(some_list) == '[4, 4, 1, 7, 2, ]'
+        assert str(some_list) == '[4, 4, 1, 7, 2]'
         pop_return = some_list.pop()
         assert some_list.lenght == 4
         assert pop_return.value == 2
-        assert str(some_list) == '[4, 4, 1, 7, ]'
+        assert str(some_list) == '[4, 4, 1, 7]'
         assert some_list.tail.value == 7
 
     def test_linked_list_prepend_method_is_working_properly_with_empty_list(self, empty_list):
@@ -88,7 +88,7 @@ class TestsLinkedList:
         return_value = empty_list.prepend(4)
         assert return_value is True
         assert empty_list.lenght == 1
-        assert str(empty_list) == '[4, ]'
+        assert str(empty_list) == '[4]'
         assert empty_list.tail.next is None
         assert empty_list.head.value == 4
         assert empty_list.tail.value == 4
@@ -99,7 +99,7 @@ class TestsLinkedList:
         return_value = populated_list.prepend(2)
         assert return_value is True
         assert populated_list.lenght == 2
-        assert str(populated_list) == '[2, 4, ]'
+        assert str(populated_list) == '[2, 4]'
         assert populated_list.head.value == 2
         assert populated_list.head.next.value == 4
         assert populated_list.tail.next is None
@@ -189,3 +189,19 @@ class TestsLinkedList:
         assert populated_list.lenght == 5
         node = populated_list.get(2)
         assert node.value == 12
+
+    def test_linked_list_remove_method_return_none_for_emtpy_list(self, empty_list):
+        """Test that remove method is returning None when list is emtpy."""
+        return_value = empty_list.remove(1)
+        assert return_value is None
+
+    def test_linked_list_remove_method_is_properly_removing_item_from_populated_list(self, populated_list):
+        """Test that remove method is removing proper item from linked list."""
+        populated_list.append(5)
+        populated_list.append(6)
+        populated_list.append(7)
+        return_value = populated_list.remove(2)
+        assert isinstance(return_value, Node)
+        assert return_value.value == 6
+        assert return_value.next is None
+

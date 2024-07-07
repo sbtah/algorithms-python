@@ -168,19 +168,60 @@ class LinkedList:
             return self.prepend(value)
         if index == self.lenght:
             return self.append(value)
-        
+
         new_node = Node(value)
         before_node = self.get(index - 1)
         new_node.next = before_node.next
         before_node.next = new_node
         self.lenght += 1
         return True
-        
+
+    def remove(self, index):
+        """
+        Responsibilities:
+        - Remove node at specified index
+        """
+        if index < 0 or index > self.lenght:
+            return None
+
+        if index == 0:
+            return self.pop_first()
+
+        if index == self.lenght - 1:
+            return self.pop()
+
+        before_node = self.get(index - 1)
+        node_to_remove = before_node.next
+        before_node.next = node_to_remove.next
+        node_to_remove.next = None
+        self.lenght -= 1
+        return node_to_remove
+
+    def reverse(self):
+        """
+        Responsibilities:
+        - Reverse a list in place (without creating new object.)
+        """
+        first_node_in_list = self.head
+        last_node_in_list = self.tail
+
+        current_node = self.head
+        next_node = self.head.next
+        prev_node = None
+        while current_node is not None:
+            next_node = current_node.next
+            current_node.next = prev_node
+            prev_node = current_node
+            current_node = next_node
+        self.head = last_node_in_list
+        self.tail = first_node_in_list
+        return True
+
     def print_list(self):
         representation = '['
         current_node = self.head
         while current_node is not None:
-            representation += f'{current_node.value}, '
+            representation += f'{current_node.value}, ' if current_node.next is not None else f'{current_node.value}'
             current_node = current_node.next
         else:
             representation += ']'
@@ -193,4 +234,11 @@ class LinkedList:
 # Tests:
 # LL init:
 my_list = LinkedList()
-print(my_list.head)
+my_list.append(1)
+my_list.append(2)
+my_list.append(3)
+my_list.append(4)
+my_list.append(5)
+print(my_list)
+my_list.reverse()
+print(my_list)
