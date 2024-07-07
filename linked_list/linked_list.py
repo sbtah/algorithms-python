@@ -226,19 +226,3 @@ class LinkedList:
         else:
             representation += ']'
         return representation
-
-
-
-
-
-# Tests:
-# LL init:
-my_list = LinkedList()
-my_list.append(1)
-my_list.append(2)
-my_list.append(3)
-my_list.append(4)
-my_list.append(5)
-print(my_list)
-my_list.reverse()
-print(my_list)
